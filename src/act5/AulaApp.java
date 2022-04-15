@@ -1,7 +1,9 @@
 package act5;
 
 import act5.Profesor.Materia;
-
+/*
+ * @Auth Adria Queralt
+ */
 public class AulaApp {
 
 	public static void main(String[] args) {

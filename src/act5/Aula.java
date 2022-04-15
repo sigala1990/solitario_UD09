@@ -3,6 +3,7 @@ package act5;
 import java.util.ArrayList;
 import java.util.List;
 
+import act5.Persona.Genero;
 import act5.Profesor.Materia;
 
 public class Aula {
@@ -26,7 +27,7 @@ public class Aula {
 		super();
 		this.id = id;
 		this.cantidadAlumnos = cantidadAlumnos;
-		this.materia = materiaRandom();
+		this.materia = materia;
 		this.profesor = crearProfesor();
 		this.estudiantes = crearArrayEstudiantes();
 		//this.seRealizaClase = hacemosClase();
@@ -65,8 +66,15 @@ public class Aula {
 	}
 	public void mensajeFinal() {
 		if(hacemosClase()) {
+			System.out.println("Grupo notas chicos\n");
 			for (int i = 0; i < estudiantes.size(); i++) {
-				if(estudiantes.get(i).novillos) {
+				if(estudiantes.get(i).novillos && estudiantes.get(i).getSexo() == Genero.H) {
+					System.out.println(estudiantes.get(i).nombre +" saco una nota de "+ estudiantes.get(i).calificacionAleatoria());
+				}
+			}
+			System.out.println("\nGrupo notas chicas\n");
+			for (int i = 0; i < estudiantes.size(); i++) {
+				if(estudiantes.get(i).novillos && estudiantes.get(i).getSexo() == Genero.M) {
 					System.out.println(estudiantes.get(i).nombre +" saco una nota de "+ estudiantes.get(i).calificacionAleatoria());
 				}
 			}
@@ -79,7 +87,7 @@ public class Aula {
 		if(!profesorCoincidaMateria()){
 			text += "El profesor no coincide con la materia\n";
 			hacemosClase = false;
-		}if(!profesor.novillos) {
+		}if(profesor.novillos) {
 			text += "El profesor no esta disponible\n";
 			hacemosClase = false;
 		}if(!asistenciaMitadClase()) {
@@ -93,11 +101,13 @@ public class Aula {
 	}
 	
 	public boolean profesorCoincidaMateria() {
-		if(this.materia == this.profesor.materiaRandom()) { //tipo de profe
-			System.out.println(materia +"-----"+ profesor.materiaRandom()+" true");
+		if(materia.compareTo(profesor.materiaRandom()) == 0){
+			
+		//if(this.materia == this.profesor.materiaRandom()) { //tipo de profe
+			System.out.println(materia.ordinal() +"-----"+ profesor.materiaRandom().ordinal()+" true");
 			return true; //coinciden en la asignatura
 		}
-		System.out.println(materia +"-----"+ profesor.materiaRandom()+" false");
+		System.out.println(materia.ordinal() +"-----"+ profesor.materiaRandom().ordinal()+" false");
 		return false;
 	}
 	
@@ -105,12 +115,13 @@ public class Aula {
 	
 	public boolean asistenciaMitadClase() {
 		int controlAsistencia = 0;
+		int mitadAlumnos = cantidadAlumnos;
 		for (int i = 0; i < this.estudiantes.size(); i++) {
 			if(this.estudiantes.get(i).novillos) {//asiste a clase ?
 				controlAsistencia++;
 			}
 		}			
-		if(this.cantidadAlumnos/100 *50 >controlAsistencia) {
+		if((mitadAlumnos/2) < controlAsistencia) {
 			return true;
 		}
 		return false;
@@ -137,7 +148,7 @@ public class Aula {
 	}
 	*/
 	
-	public Materia materiaRandom() {
+	/*public Materia materiaRandom() {
 		int random = (int) (Math.random()* (3-1)+1);
 		switch (random) {
 		case 1:
@@ -148,5 +159,5 @@ public class Aula {
 			return Materia.fisica;
 		}
 		return null;			
-	}
+	}*/
 }

@@ -41,7 +41,7 @@ public abstract class Persona {
 	}
 	
 	private Genero sexoAleatorio() {
-		int random = (int) (Math.random()* (2-1)+1);
+		int random = (int) (Math.random()* (3-1)+1);
 		if(random == 1) {
 			return Genero.H;
 		}
