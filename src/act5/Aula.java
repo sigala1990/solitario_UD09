@@ -101,13 +101,13 @@ public class Aula {
 	}
 	
 	public boolean profesorCoincidaMateria() {
-		if(materia.compareTo(profesor.materiaRandom()) == 0){
+		if(materia.compareTo(profesor.getMateria()) == 0){
 			
 		//if(this.materia == this.profesor.materiaRandom()) { //tipo de profe
-			System.out.println(materia.ordinal() +"-----"+ profesor.materiaRandom().ordinal()+" true");
+			System.out.println(materia.ordinal() +"-----"+ profesor.getMateria().ordinal()+" true");
 			return true; //coinciden en la asignatura
 		}
-		System.out.println(materia.ordinal() +"-----"+ profesor.materiaRandom().ordinal()+" false");
+		System.out.println(materia.ordinal() +"-----"+ profesor.getMateria().ordinal()+" false");
 		return false;
 	}
 	
